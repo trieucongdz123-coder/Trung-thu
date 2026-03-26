@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trung Thu Tuyên Quang</title>
+
+<style>
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin:0;
+    font-family: Arial;
+    background:#0b1a3a;
+    color:white;
+}
+
+/* Navbar */
+nav {
+    position:fixed;
+    width:100%;
+    top:0;
+    background:rgba(0,0,0,0.8);
+    padding:15px;
+    text-align:center;
+    z-index:1000;
+}
+nav a {
+    color:#ffcc00;
+    margin:0 20px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Hero */
+.hero {
+    height:100vh;
+    background:url("img1.jpg") center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.hero h1 {
+    background:rgba(0,0,0,0.6);
+    padding:20px;
+    border-radius:15px;
+    font-size:45px;
+}
+
+/* Section */
+section {
+    padding:80px 20px;
+    max-width:900px;
+    margin:auto;
+}
+
+/* Fade animation */
+.fade {
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s;
+}
+.fade.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Gallery */
+.gallery {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.gallery img {
+    width:280px;
+    margin:10px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.gallery img:hover {
+    transform:scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+.lightbox img {
+    max-width:90%;
+    max-height:90%;
+    border-radius:10px;
+}
+
+/* Footer */
+footer {
+    background:black;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#">Trang chủ</a>
+    <a href="#gioithieu">Giới thiệu</a>
+    <a href="#hinhanh">Hình ảnh</a>
+</nav>
+
+<div class="hero">
+    <h1>🎑 Trung Thu Tuyên Quang 🎑</h1>
+</div>
+
+<section id="gioithieu" class="fade">
+    <h2>🌟 Giới thiệu</h2>
+    <p>
+        Trung thu Tuyên Quang (Lễ hội Thành Tuyên) là lễ hội lớn nhất Việt Nam,
+        nổi bật với các mô hình đèn lồng khổng lồ và diễu hành rực rỡ.
+    </p>
+    <p>
+        Lễ hội thu hút hàng chục nghìn du khách mỗi năm, mang đến không khí
+        sôi động và đậm chất văn hóa truyền thống.
+    </p>
+</section>
+
+<section id="hinhanh" class="fade">
+    <h2>📸 Hình ảnh</h2>
+    <div class="gallery">
+        <img src="img1.jpg">
+        <img src="img2.jpg">
+        <img src="img3.jpg">
+        <img src="img4.jpg">
+        <img src="img5.jpg">
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+    <img id="lightbox-img">
+</div>
+
+<footer>
+    <p>© 2026 Trung Thu Tuyên Quang</p>
+</footer>
+
+<script>
+// Fade khi cuộn
+const fades = document.querySelectorAll('.fade');
+window.addEventListener('scroll', () => {
+    fades.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if(top < window.innerHeight - 50){
+            el.classList.add('show');
+        }
+    });
+});
+
+// Click ảnh phóng to
+const images = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+images.forEach(img => {
+    img.onclick = () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+    }
+});
+
+lightbox.onclick = () => {
+    lightbox.style.display = "none";
+}
+</script>
+
+</body>
+</html>
